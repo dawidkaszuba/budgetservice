@@ -17,7 +17,6 @@ public class SecurityConfig {
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(new KeycloakRoleConverter());
 
         http.authorizeHttpRequests()
-                .requestMatchers("/home/**").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .oauth2ResourceServer()

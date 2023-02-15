@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public interface BudgetUserService {
-    BudgetUser getBudgetUserByUserName(String userName);
+    BudgetUser getOrCreateBudgetUserByUserName(String userName);
 
     List<BudgetUser> getAllUsers();
 }

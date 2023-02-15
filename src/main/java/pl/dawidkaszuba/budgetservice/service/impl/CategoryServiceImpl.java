@@ -33,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> getAllCategoriesByBudgetUser(String userName) {
-        BudgetUser budgetUser = budgetUserService.getBudgetUserByUserName(userName);
+        BudgetUser budgetUser = budgetUserService.getOrCreateBudgetUserByUserName(userName);
         return categoryRepository.findAllByBudgetUser(budgetUser);
     }
 

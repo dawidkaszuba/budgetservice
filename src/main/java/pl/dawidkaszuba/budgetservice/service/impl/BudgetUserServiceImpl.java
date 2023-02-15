@@ -7,6 +7,7 @@ import pl.dawidkaszuba.budgetservice.repository.BudgetUserRepository;
 import pl.dawidkaszuba.budgetservice.service.BudgetUserService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BudgetUserServiceImpl implements BudgetUserService {
@@ -18,10 +19,14 @@ public class BudgetUserServiceImpl implements BudgetUserService {
     }
 
     @Override
-    public BudgetUser getBudgetUserByUserName(String userName) {
-       return budgetUserRepository
-           .findByUserName(userName)
-           .orElseThrow(() -> new UsernameNotFoundException("User not found: " + userName));
+    public BudgetUser getOrCreateBudgetUserByUserName(String userName) {
+        Optional<BudgetUser> optionalUser = budgetUserRepository.findByUserName(userName);
+        if(budgetUserRepository.findByUserName(userName).isPresent()) {
+            return optionalUser.get();
+        } else {
+            BudgetUser newUser = new BudgetUser(userName);
+            return budgetUserRepository.save(newUser);
+        }
     }
 
     @Override

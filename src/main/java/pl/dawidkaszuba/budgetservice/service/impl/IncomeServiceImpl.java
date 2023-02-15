@@ -24,7 +24,7 @@ public class IncomeServiceImpl implements IncomeService {
 
     @Override
     public List<Income> getAllIncomesByUser(String userName) {
-        BudgetUser budgetUser = budgetUserService.getBudgetUserByUserName(userName);
+        BudgetUser budgetUser = budgetUserService.getOrCreateBudgetUserByUserName(userName);
         return incomeRepository.findAllByBudgetUser(budgetUser);
     }
 

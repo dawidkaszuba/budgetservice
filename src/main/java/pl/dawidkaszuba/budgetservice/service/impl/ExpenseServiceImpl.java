@@ -23,13 +23,8 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public List<Expense> getAllExpenses() {
-        return expenseRepository.findAll();
-    }
-
-    @Override
     public List<Expense> getAllExpensesByBudgetUser(String userName) {
-        BudgetUser budgetUser = budgetUserService.getBudgetUserByUserName(userName);
+        BudgetUser budgetUser = budgetUserService.getOrCreateBudgetUserByUserName(userName);
         return expenseRepository.findAllByBudgetUser(budgetUser);
     }
 

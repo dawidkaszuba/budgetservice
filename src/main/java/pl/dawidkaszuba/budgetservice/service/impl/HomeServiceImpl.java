@@ -28,7 +28,7 @@ public class HomeServiceImpl implements HomeService {
 
     @Override
     public Summary getSummary(String userName) {
-        BudgetUser budgetUser = budgetUserService.getBudgetUserByUserName(userName);
+        BudgetUser budgetUser = budgetUserService.getOrCreateBudgetUserByUserName(userName);
         LocalDateTime currentDateTime = LocalDateTime.now();
         LocalDateTime startDateTimeAnnual = LocalDateTime.of(currentDateTime.getYear(), 1, 1, 0, 0);
         LocalDateTime endDateTimeAnnual = LocalDateTime.of(currentDateTime.getYear(), 12, 31, 23, 59);
